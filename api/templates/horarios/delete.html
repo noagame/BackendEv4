@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Horario{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>¿Estás seguro de que deseas eliminar este Horario?</h2>
+    <p>Medico: {{ horarios.trabajador.name }} {{ horarios.trabajador.apellido}}</p>
+    <p>Día: {{ horarios.day }}</p>
+    <p>Hora Inicio: {{ horarios.hora_inicio }}</p>
+    <p>Hora Fin: {{ horarios.hora_fin }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn-submit" type="submit">Sí, eliminar</button>
+        <a href="{% url 'horarios_list' %}" class="btn-cancel">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

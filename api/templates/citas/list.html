@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Citas{% endblock %}
+{% block content %}
+<h2>Listado de Horarios</h2>
+<a href="{% url 'citas_create' %}" class="btn-submit">Agregar Cita</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID Medico</th>
+            <th>Apellidos</th>
+            <th>ID Cliente</th>
+            <th>Apellidos</th>
+            <th>Dia</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cita in citas %}
+        <tr>
+            <td>{{ cita.trabajador.job_id }}</td>
+            <td>{{ cita.trabajador.apellido }}</td>
+            <td>{{ cita.usuario.cliente_id }}</td>
+            <td>{{ cita.usuario.apellido }}</td>
+            <td>{{ cita.dia.day }}</td>
+            <td>{{ cita.dia.hora_inicio }}</td>
+            <td>{{ cita.dia.hora_fin }}</td>
+            <td>
+                <a href="{% url 'citas_update' cita.pk %}">Editar</a>
+                <a href="{% url 'citas_delete' cita.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No hay horarios registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Trabajador{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>¿Estás seguro de que deseas eliminar este trabajador?</h2>
+    <p>ID: {{ trabajadores.job_id }}</p>
+    <p>Nombre: {{ trabajadores.nombre }}</p>
+    <p>Apellido (s): {{ trabajadores.apellido }}</p>
+    <p>Email: {{ trabajadores.email }}</p>
+    <p>Especialidad: {{ trabajadores.specialty }}</p>
+    <p>Afiliación: {{ trabajadores.afiliacion }}</p>
+    <p>Edad: {{ trabajadores.edad }}</p>
+    <p>Género: {{ trabajadores.genero }}</p>
+    <p>Activo: {{ trabajadores.is_active }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn-submit" type="submit">Sí, eliminar</button>
+        <a href="{% url 'trabajadores_list' %}" class="btn-cancel">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

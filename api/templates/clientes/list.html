@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Clientes{% endblock %}
+{% block content %}
+<h2>Listado de Clientes</h2>
+<a href="{% url 'cliente_create' %}" class="btn-submit">Agregar Cliente</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Edad</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Género</th>
+            <th>Activo</th>
+            <th>Creado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.cliente_id }}</td>
+            <td>{{ cliente.edad }}</td>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.apellido }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.genero }}</td>
+            <td>{{ cliente.is_active }}</td>
+            <td>{{ cliente.created_at }}</td>
+            <td>
+                <a href="{% url 'cliente_update' cliente.pk %}">Editar</a> |
+                <a href="{% url 'cliente_delete' cliente.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No hay clientes registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

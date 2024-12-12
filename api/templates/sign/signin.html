@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Iniciar Sesión</h1>
+  {% if error %}
+  <p class="error-message">{{ error }}</p>
+  {% endif %}
+  <form action="/signin/" method="POST" class="login-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn-submit">Iniciar Sesión</button>
+  </form>
+</div>
+
+{% endblock %}

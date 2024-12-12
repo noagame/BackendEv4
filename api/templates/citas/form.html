@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Formulario Cita{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>{{ title }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_usuario">{{ form.usuario.label }}</label>
+            {{ form.usuario }}
+        </div>
+        <div class="form-group">
+            <label for="id_trabajador">{{ form.trabajador.label }}</label>
+            {{ form.trabajador}}
+        </div>
+        <div class="form-group">
+            <label for="id_dia">{{ form.dia.label }}</label>
+            {{ form.dia }}
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">Guardar Cita</button>
+            <a href="{% url 'citas_list' %}" class="btn-cancel">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

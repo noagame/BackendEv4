@@ -1,0 +1,32 @@
+<nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        {% if user.is_authenticated %}
+
+        <li>
+            <a href="{% url 'cliente_list' %}">Lista Clientes</a>
+        </li>
+        <li>
+            <a href="{% url 'trabajadores_list' %}">Lista Trabajadores</a>
+        </li>
+        <li>
+            <a href="{% url 'horarios_list' %}">Lista Horarios Disponibles</a>
+        </li>
+        <li>
+            <a href="{% url 'citas_list' %}">Lista Citas</a>
+        </li>
+        <li class="logout">
+            <a href="/logout">Logout</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="/signin">Login</a>
+        </li>
+        <li>
+            <a href="/signup">Register</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>

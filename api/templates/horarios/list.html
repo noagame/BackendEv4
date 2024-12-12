@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Horarios{% endblock %}
+{% block content %}
+<h2>Listado de Horarios</h2>
+<!-- Boton para agregar un Horario -->
+<a href="{% url 'horarios_create' %}" class="btn-submit">Agregar Horario</a>
+<table border="1">
+    <!-- Modelo de la tabla -->
+    <thead>
+        <tr>
+            <th>ID Medico</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Día</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+            <th>Disponinilidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Muestreo de todos los horarios disponibles -->
+        {% for horario in horarios %}
+        <tr>
+            <td>{{ horario.trabajador.job_id }}</td>
+            <td>{{ horario.trabajador.name }}</td>
+            <td>{{ horario.trabajador.apellido }}</td>
+            <td>{{ horario.day }}</td>
+            <td>{{ horario.hora_inicio }}</td>
+            <td>{{ horario.hora_fin }}</td>
+            <td>{{ horario.is_valid}}</td>
+            <td>
+                <a href="{% url 'horarios_update' horario.pk %}">Editar</a>
+                <a href="{% url 'horarios_delete' horario.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+        <!-- En caso de que no existan registros -->
+            <td colspan="7">No hay horarios registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Formulario de Trabajadores{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="form-title">{{ view.title }}</h2>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_job_id">{{ form.job_id.label }}</label>
+            {{ form.job_id }}
+        </div>
+        <div class="form-group">
+            <label for="id_name">{{ form.name.label }}</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_apellido">{{ form.apellido.label }}</label>
+            {{ form.apellido }}
+        </div>
+        <div class="form-group">
+            <label for="id_email">{{ form.email.label }}</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="id_edad">{{ form.edad.label }}</label>
+            {{ form.edad }}
+        </div>
+        <div class="form-group">
+            <label for="id_afiliacion">{{ form.afiliacion.label }}</label>
+            {{ form.afiliacion }}
+        </div>
+        <div class="form-group">
+            <label for="id_specialty">{{ form.specialty.label }}</label>
+            {{ form.specialty }}
+        </div>
+        <div class="form-group">
+            <label for="id_genero">{{ form.genero.label }}</label>
+            {{ form.genero }}
+        </div>
+        <div class="form-group">
+            {{ form.is_active }}
+            <label for="id_is_active">{{ form.is_active.label }}</label>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">Guardar</button>
+            <a href="{% url 'cliente_list' %}" class="btn-cancel">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

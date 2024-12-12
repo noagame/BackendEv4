@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Trabajadores{% endblock %}
+{% block content %}
+<h2>Listado de trabajadores</h2>
+<!-- Boton para agregar un Trabajador -->
+<a href="{% url 'trabajadores_create' %}" class="btn-submit">Agregar trabajador</a>
+<table border="1">
+    <!-- Modelo de la tabla -->
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Edad</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Afiliación</th>
+            <th>Especialidad</th>
+            <th>Género</th>
+            <th>Activo</th>
+            <th>Creado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Muestreo de todos los Trabajadores disponibles -->
+        {% for trabajador in trabajadores %}
+        <tr>
+            <td>{{ trabajador.job_id }}</td>
+            <td>{{ trabajador.edad }}</td>
+            <td>{{ trabajador.name }}</td>
+            <td>{{ trabajador.apellido }}</td>
+            <td>{{ trabajador.email }}</td>
+            <td>{{ trabajador.afiliacion }}</td>
+            <td>{{ trabajador.specialty }}</td>
+            <td>{{ trabajador.genero }}</td>
+            <td>{{ trabajador.is_active }}</td>
+            <td>{{ trabajador.created_at }}</td>
+            <td>
+                <a href="{% url 'trabajadores_update' trabajador.pk %}">Editar</a>
+                <a href="{% url 'trabajadores_delete' trabajador.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <!-- En caso de que no existan registros -->
+        <tr>
+            <td colspan="7">No hay trabajadores registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

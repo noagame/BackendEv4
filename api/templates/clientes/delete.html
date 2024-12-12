@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Cliente{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>¿Estás seguro de que deseas eliminar este cliente?</h2>
+    <p>ID: {{ cliente.cliente_id }}</p>
+    <p>Nombre: {{ cliente.nombre }}</p>
+    <p>Apellido (s): {{ cliente.apellido }}</p>
+    <p>Email: {{ cliente.email }}</p>
+    <p>Edad: {{ cliente.edad }}</p>
+    <p>Género: {{ cliente.genero }}</p>
+    <p>Activo: {{ cliente.is_active }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn-submit" type="submit">Sí, eliminar</button>
+        <a href="{% url 'cliente_list' %}" class="btn-cancel">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
